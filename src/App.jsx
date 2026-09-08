@@ -8,6 +8,7 @@ import storyDetailAsset from './assets/img4.jpeg'
 import spaceAsset from './assets/img5.jpeg'
 import spaceDetailAsset from './assets/img2.jpeg'
 import rooftopAsset from './assets/img1.jpeg'
+import { ExperienceSection, ReviewsSection, VisitPerks } from './components/CafeExtras'
 
 const menuImages = {
   Burgers: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=88',
@@ -69,7 +70,7 @@ function App() {
 
   return (
     <main className="cafe-site">
-      <div className="night-atmosphere" aria-hidden="true"><div className="light-string"><span /><span /><span /><span /><span /><span /><span /><span /></div></div>
+      <div className="night-atmosphere" aria-hidden="true"><div className="light-string"><span /><span /><span /><span /><span /><span /><span /><span /></div><div className="light-string light-string-secondary"><span /><span /><span /><span /><span /><span /></div><div className="light-string light-string-low"><span /><span /><span /><span /><span /></div></div>
       <div className="site-alert"><span>Now serving late breakfasts</span><span>Open daily 1:30 PM - 10:00 PM</span><a href="#visit">Reserve a table</a></div>
 
       <header className="site-header">
@@ -96,6 +97,8 @@ function App() {
         <div className="running-track"><span><b>ALPS CAFE</b> Fresh pours <i>✳</i> Loud flavours <i>✳</i> Late conversations <i>✳</i> Open today 1:30 PM - 10 PM</span><span aria-hidden="true"><b>ALPS CAFE</b> Fresh pours <i>✳</i> Loud flavours <i>✳</i> Late conversations <i>✳</i> Open today 1:30 PM - 10 PM</span></div>
       </section>
 
+      <ExperienceSection />
+
       <section className="menu-section page-section" id="menu">
         <div className="section-heading"><div><p className="eyebrow">The Alps menu</p><h2>Pick your<br /><em>favourite.</em></h2></div><p className="section-lead">Burgers, loaded fries, wraps, small plates and colourful drinks. Browse the full menu and build your order.</p></div>
         <div className="category-tabs" role="tablist" aria-label="Menu categories">{categories.map((category) => <button key={category} className={activeCategory === category ? 'active' : ''} onClick={() => changeCategory(category)}>{category}</button>)}</div>
@@ -107,6 +110,9 @@ function App() {
       <section className="story-section page-section" id="story"><div className="story-photo"><img className="story-photo-main" src={storyAsset} alt="Rooftop lights at Alps Cafe" /><div className="story-photo-detail"><img src={storyDetailAsset} alt="Warm interior details and a drink at Alps Cafe" /><span>THE ALPS MOOD</span></div><span className="vertical-label">04 / AFTER DARK</span><span className="story-photo-index">NAGERCOIL<br /><em>2026 — now</em></span></div><div className="story-copy"><p className="eyebrow">Why we are here</p><h2>A little<br /><em>more feeling.</em></h2><p>Alps is a warm room, a bright glass and one good reason to stay a while longer.</p><p>We make familiar food with curious hands, pour drinks worth slowing down for, and leave space for the moments that happen between them.</p><a className="text-link" href="#visit">Come find your corner <span>↗</span></a><div className="story-signature">Brew. Bite. Belong.<br /><small>made for your everyday escape</small></div></div></section>
 
       <section className="space-section page-section" id="space"><div className="section-heading"><div><p className="eyebrow">Take your time</p><h2>A table for<br /><em>every mood.</em></h2></div><p className="section-lead">Sunlit corners for slow mornings. Low lights for late plates. Upstairs, the rooftop catches the best breeze in town.</p></div><div className="gallery-grid">{gallery.map((item, index) => <figure className={`gallery-card gallery-${index + 1}`} key={item.label}><img src={item.image} alt={item.label} /><figcaption><span>0{index + 1}</span>{item.label}</figcaption></figure>)}</div></section>
+
+      <ReviewsSection />
+      <VisitPerks />
 
       <section className="visit-section page-section" id="visit"><div className="visit-card"><div className="visit-copy"><p className="eyebrow">Come by soon</p><h2>Make a little<br /><em>room for good.</em></h2><div className="visit-details"><p><strong>Find us</strong><br />12, Beach Road, Nagercoil<br />Tamil Nadu 629001</p><p><strong>Hours</strong><br />Daily / 1:30 PM - 10:00 PM<br />Kitchen closes at 9:30 PM</p><p><strong>Say hello</strong><br />+91 98765 43210<br />hello@alpscafe.in</p></div></div><form className="booking-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}><p className="eyebrow">Table request</p><h3>{submitted ? 'We will see you soon.' : 'Save your spot.'}</h3>{submitted ? <p className="form-success">Thanks for reaching out. We will confirm your table by phone shortly.</p> : <><label>Name<input required placeholder="Your name" /></label><div className="form-row"><label>Date<input required type="date" /></label><label>Guests<select defaultValue="2"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></label></div><button className="button button-light" type="submit">Request a table <span>↗</span></button></>}</form></div></section>
 
