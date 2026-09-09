@@ -3,6 +3,6 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/alps/',
+  base: process.env.GITHUB_ACTIONS ? '/alps/' : '/',
   plugins: [react()],
 })

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import './CafeSite.css'
 import heroAsset from './assets/2.png'
@@ -54,7 +54,7 @@ const itemsPerPage = 9
 
 const gallery = [
   { image: spaceAsset, label: 'Morning light' },
-  { image: spaceDetailAsset, label: 'The bar' },
+  { image: spaceDetailAsset, label: 'Comfortable afternoons' },
   { image: rooftopAsset, label: 'Slow evenings' },
 ]
 
@@ -67,6 +67,40 @@ function App() {
   const pageCount = Math.ceil(filteredItems.length / itemsPerPage)
   const visibleItems = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
   const changeCategory = (category) => { setActiveCategory(category); setCurrentPage(1) }
+  const handleBookingSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const subject = `Table request from ${formData.get('name')}`
+    const body = `Name: ${formData.get('name')}\nDate: ${formData.get('date')}\nGuests: ${formData.get('guests')}`
+    window.location.href = `mailto:mail@alpscafenagercoil.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setSubmitted(true)
+  }
+
+  useEffect(() => {
+    const revealTargets = document.querySelectorAll('.cafe-site > section, .menu-card, .experience-card, .gallery-card, .booking-form, .perk-item')
+    revealTargets.forEach((element, index) => {
+      element.classList.add('scroll-reveal')
+      element.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`)
+    })
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.12 })
+    revealTargets.forEach((element) => observer.observe(element))
+    requestAnimationFrame(() => {
+      revealTargets.forEach((element) => {
+        if (element.getBoundingClientRect().top < window.innerHeight * 0.9) {
+          element.classList.add('is-visible')
+        }
+      })
+    })
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <main className="cafe-site">
@@ -114,7 +148,7 @@ function App() {
       <ReviewsSection />
       <VisitPerks />
 
-      <section className="visit-section page-section" id="visit"><div className="visit-card"><div className="visit-copy"><p className="eyebrow">Come by soon</p><h2>Make a little<br /><em>room for good.</em></h2><div className="visit-details"><p><strong>Find us</strong><br />12, Beach Road, Nagercoil<br />Tamil Nadu 629001</p><p><strong>Hours</strong><br />Daily / 1:30 PM - 10:00 PM<br />Kitchen closes at 9:30 PM</p><p><strong>Say hello</strong><br />+91 98765 43210<br />hello@alpscafe.in</p></div></div><form className="booking-form" onSubmit={(event) => { event.preventDefault(); setSubmitted(true) }}><p className="eyebrow">Table request</p><h3>{submitted ? 'We will see you soon.' : 'Save your spot.'}</h3>{submitted ? <p className="form-success">Thanks for reaching out. We will confirm your table by phone shortly.</p> : <><label>Name<input required placeholder="Your name" /></label><div className="form-row"><label>Date<input required type="date" /></label><label>Guests<select defaultValue="2"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></label></div><button className="button button-light" type="submit">Request a table <span>↗</span></button></>}</form></div></section>
+      <section className="visit-section page-section" id="visit"><div className="visit-card"><div className="visit-copy"><p className="eyebrow">Come by soon</p><h2>Make a little<br /><em>room for good.</em></h2><div className="visit-details"><p><strong>Find us</strong><br />Opp. to Industrial Estate, SIDCO<br />Kurusady, North Konam<br />Nagercoil, Tamil Nadu 629004<br /><a className="map-link" href="https://www.google.com/maps/place/ALPS+CAFE/@8.1634338,77.4114533,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f150642d7009:0x1823a6fd6948962!8m2!3d8.1634338!4d77.4114533!16s%2Fg%2F11np_90ckp?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Open in Google Maps ↗</a></p><p><strong>Hours</strong><br />Daily / 1:30 PM - 10:00 PM<br />Kitchen closes at 9:30 PM</p><p><strong>Say hello</strong><br />+91 98765 43210<br />hello@alpscafe.in</p></div><div className="map-panel"><a className="directions-button" href="https://www.google.com/maps/place/ALPS+CAFE/@8.1634338,77.4114533,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f150642d7009:0x1823a6fd6948962!8m2!3d8.1634338!4d77.4114533!16s%2Fg%2F11np_90ckp?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Show directions <span>↗</span></a><iframe title="Find Alps Cafe on Google Maps" src="https://www.google.com/maps?q=ALPS%20CAFE%2C%20Nagercoil%208.1634338%2C77.4114533&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div><form className="booking-form" onSubmit={handleBookingSubmit}><p className="eyebrow">Table request</p><h3>{submitted ? 'We will see you soon.' : 'Save your spot.'}</h3>{submitted ? <p className="form-success">Your email draft is ready. Send it to confirm your table request.</p> : <><label>Name<input required name="name" placeholder="Your name" /></label><div className="form-row"><label>Date<input required name="date" type="date" /></label><label>Guests<select name="guests" defaultValue="2"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></label></div><button className="button button-light" type="submit">Request a table <span>↗</span></button></>}</form></div></section>
 
       <footer className="site-footer"><div className="footer-main"><a className="brand" href="#top" aria-label="Alps Cafe home"><span className="brand-mark"><img src={logoAsset} alt="Alps Cafe logo" /></span></a><p>Good food. Better company.<br />See you upstairs.</p><div className="footer-links"><a href="#menu">Menu</a><a href="#story">About</a><a href="#visit">Contact</a><a href="#visit">Instagram ↗</a></div></div><div className="footer-bottom"><span>© 2026 Alps Cafe</span><span>Made for slow days and long nights.</span></div></footer>
     </main>
