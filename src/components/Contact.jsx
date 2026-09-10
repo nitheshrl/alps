@@ -71,7 +71,7 @@ export default function Contact() {
               <div className="icon">📞</div>
               <div>
                 <h4>Phone</h4>
-                <p>Call us to order or book events</p>
+                <p>+91 80984 51995<br />+91 78068 17130</p>
               </div>
             </div>
           </motion.div>

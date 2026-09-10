@@ -145,6 +145,7 @@
 .menu-card:hover .menu-card-image img { transform: scale(1.05); }
 .menu-category { position: absolute; top: 1rem; left: 1rem; padding: 0.35rem 0.55rem; background: var(--paper); color: var(--ink); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .menu-bestseller { position: absolute; right: 1rem; bottom: 1rem; padding: 0.35rem 0.55rem; background: var(--rust); color: #fff8ea; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.menu-special-badge { position: absolute; top: 1rem; right: 1rem; padding: 0.35rem 0.55rem; background: var(--rust); color: #fff8ea; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .menu-card-body { display: flex; justify-content: space-between; gap: 1rem; padding: 1.15rem 1.25rem 1.2rem; }
 .menu-card-info { min-width: 0; }
 .menu-card-title { display: flex; align-items: start; justify-content: space-between; gap: 0.8rem; }

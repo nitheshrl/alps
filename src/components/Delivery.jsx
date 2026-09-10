@@ -63,7 +63,7 @@ export default function Delivery() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.6 }}
       >
-        <a href="tel:+919876543210" className="btn-primary">
+        <a href="tel:+918098451995" className="btn-primary">
           📞 Call to Order Now
         </a>
       </motion.div>
