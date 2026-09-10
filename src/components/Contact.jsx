@@ -53,6 +53,7 @@ export default function Contact() {
               <div>
                 <h4>Hours</h4>
                 <p>Daily: 1:30 PM – 10:00 PM</p>
+                              <p>Daily: 11:30 AM – 10:30 PM</p>
               </div>
             </div>
             <div className="contact-item">

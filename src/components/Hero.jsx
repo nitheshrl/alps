@@ -11,6 +11,7 @@ export default function Hero() {
       >
         <span className="dot" />
         Open Daily · 1:30 PM – 10:00 PM
+        Open Daily · 11:30 AM – 10:30 PM
       </motion.div>
 
       <motion.h1

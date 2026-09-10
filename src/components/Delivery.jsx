@@ -4,6 +4,7 @@ import { motion, useInView } from 'framer-motion'
 const deliveryFeatures = [
   { icon: '🛵', title: 'Free Delivery', desc: 'Free delivery up to 5km from our shop' },
   { icon: '⏰', title: '1:30 PM – 10 PM', desc: 'Order anytime during our delivery hours' },
+    { icon: '⏰', title: '11:30 AM – 10:30 PM', desc: 'Order anytime during our delivery hours' },
   { icon: '📱', title: 'Easy Ordering', desc: 'Call or WhatsApp to place your order' },
 ]
 

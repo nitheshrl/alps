@@ -23,7 +23,7 @@ const menuImages = {
 
 const rawMenu = [
   ['Sauces', 'Ketchup', 10, 'Veg'], ['Sauces', 'Mayo', 15, 'Veg'],
-  ['Crafted Burgers', 'Sweet Heat Island Burger', 339, 'Non-veg', 'Customisable'], ['Crafted Burgers', 'The Glazed Amber Burger', 339, 'Non-veg', 'Customisable'],
+  ['Crafted Burger', 'Sweet Heat Island Burger', 339, 'Non-veg', 'Customisable'],
   ['Fries Overload', 'Afghani Boti Loaded Fries', 250, 'Non-veg'], ['Fries Overload', 'Korean Loaded Fries', 265, 'Non-veg', 'Bestseller'], ['Fries Overload', 'Peri Peri Loaded Fries', 250, 'Non-veg'], ['Fries Overload', 'Signature Beef Fries', 265, 'Non-veg'], ['Fries Overload', 'Tikka Chicken Loaded Fries', 250, 'Non-veg'],
   ['Signature Wraps', 'Garlic Parmesan Wrap', 279, 'Non-veg', 'Customisable'], ['Signature Wraps', 'Grilledhouse Beef Wrap', 294, 'Non-veg', 'Customisable'], ['Signature Wraps', 'Shawarma Wrap', 279, 'Non-veg', 'Customisable'], ['Signature Wraps', 'Veg Melt Wrap', 265, 'Veg', 'Customisable'],
   ['Quesadillas', 'Smoky Beef Quesadillas', 294, 'Non-veg', 'Customisable', 'Cheese slice +₹15, shredded cheese +₹30'], ['Quesadillas', 'El Fuego Quesadillas', 250, 'Non-veg', 'Customisable'], ['Quesadillas', 'Zesty Peri Quesadillas', 250, 'Non-veg', 'Customisable'],
@@ -49,7 +49,7 @@ const menuItems = rawMenu.map(([category, name, price, type, flags = '', note = 
   tags: flags.split(',').map((tag) => tag.trim()).filter(Boolean),
 }))
 
-const categories = ['All', ...Array.from(new Set(menuItems.map((item) => item.category)))]
+const categories = ['All', 'Starters', 'Fries Overload', 'Signature Wraps', 'Quesadillas', 'Crafted Burger', 'The Sandwich Hub', 'Mocktail', 'Iced Americano', 'Iced Latte', 'Iced Mocha', 'Iced Matcha', 'Milkshake', 'Sauces', 'Mojito']
 const itemsPerPage = 9
 
 const gallery = [
@@ -106,6 +106,7 @@ function App() {
     <main className="cafe-site">
       <div className="night-atmosphere" aria-hidden="true"><div className="light-string"><span /><span /><span /><span /><span /><span /><span /><span /></div><div className="light-string light-string-secondary"><span /><span /><span /><span /><span /><span /></div><div className="light-string light-string-low"><span /><span /><span /><span /><span /></div></div>
       <div className="site-alert"><span>Now serving late breakfasts</span><span>Open daily 1:30 PM - 10:00 PM</span><a href="#visit">Reserve a table</a></div>
+        <div className="site-alert"><span>Now serving late breakfasts</span><span>Open daily 11:30 AM - 10:30 PM</span><a href="#visit">Reserve a table</a></div>
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Alps Cafe home"><span className="brand-mark"><img src={logoAsset} alt="Alps Cafe logo" /></span></a>
@@ -121,14 +122,14 @@ function App() {
           <h1>Come for<br /><em>the craving.</em></h1>
           <p className="hero-intro">Big flavours, cold pours and a room that makes staying for one more round feel like the right decision.</p>
           <div className="hero-actions"><a className="button button-dark" href="#menu">Order something good <span>↓</span></a><a className="text-link" href="#visit">Find your table <span>↗</span></a></div>
-          <div className="hero-meta"><span><strong>01:30 PM</strong> doors open daily</span><span><strong>4.8/5</strong> from our regulars</span></div>
+            <div className="hero-meta"><span><strong>11:30 AM</strong> opening time</span><span><strong>10:30 PM</strong> closing time</span><span><strong>4.8/5</strong> from our regulars</span></div>
         </div>
         <div className="hero-photo-wrap"><img className="hero-photo" src={heroAsset} alt="Alps Cafe food and drinks" /><div className="photo-note"><span>01</span><span>Made slowly,<br />served warmly.</span></div></div>
         <div className="hero-stamp">Brew<br /><span>·</span> Bite <span>·</span> Belong</div>
       </section>
 
       <section className="marquee-band" aria-label="Cafe highlights">
-        <div className="running-track"><span><b>ALPS CAFE</b> Fresh pours <i>✳</i> Loud flavours <i>✳</i> Late conversations <i>✳</i> Open today 1:30 PM - 10 PM</span><span aria-hidden="true"><b>ALPS CAFE</b> Fresh pours <i>✳</i> Loud flavours <i>✳</i> Late conversations <i>✳</i> Open today 1:30 PM - 10 PM</span></div>
+        <div className="running-track"><span><b>ALPS CAFE</b> Fresh pours <i>✳</i> Loud flavours <i>✳</i> Late conversations <i>✳</i> Open today 11:30 AM - 10:30 PM</span><span aria-hidden="true"><b>ALPS CAFE</b> Fresh pours <i>✳</i> Loud flavours <i>✳</i> Late conversations <i>✳</i> Open today 11:30 AM - 10:30 PM</span></div>
       </section>
 
       <ExperienceSection />
@@ -148,7 +149,7 @@ function App() {
       <ReviewsSection />
       <VisitPerks />
 
-      <section className="visit-section page-section" id="visit"><div className="visit-card"><div className="visit-copy"><p className="eyebrow">Come by soon</p><h2>Make a little<br /><em>room for good.</em></h2><div className="visit-details"><p><strong>Find us</strong><br />Opp. to Industrial Estate, SIDCO<br />Kurusady, North Konam<br />Nagercoil, Tamil Nadu 629004<br /><a className="map-link" href="https://www.google.com/maps/place/ALPS+CAFE/@8.1634338,77.4114533,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f150642d7009:0x1823a6fd6948962!8m2!3d8.1634338!4d77.4114533!16s%2Fg%2F11np_90ckp?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Open in Google Maps ↗</a></p><p><strong>Hours</strong><br />Daily / 1:30 PM - 10:00 PM<br />Kitchen closes at 9:30 PM</p><p><strong>Say hello</strong><br />+91 98765 43210<br />hello@alpscafe.in</p></div><div className="map-panel"><a className="directions-button" href="https://www.google.com/maps/place/ALPS+CAFE/@8.1634338,77.4114533,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f150642d7009:0x1823a6fd6948962!8m2!3d8.1634338!4d77.4114533!16s%2Fg%2F11np_90ckp?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Show directions <span>↗</span></a><iframe title="Find Alps Cafe on Google Maps" src="https://www.google.com/maps?q=ALPS%20CAFE%2C%20Nagercoil%208.1634338%2C77.4114533&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div><form className="booking-form" onSubmit={handleBookingSubmit}><p className="eyebrow">Table request</p><h3>{submitted ? 'We will see you soon.' : 'Save your spot.'}</h3>{submitted ? <p className="form-success">Your email draft is ready. Send it to confirm your table request.</p> : <><label>Name<input required name="name" placeholder="Your name" /></label><div className="form-row"><label>Date<input required name="date" type="date" /></label><label>Guests<select name="guests" defaultValue="2"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></label></div><button className="button button-light" type="submit">Request a table <span>↗</span></button></>}</form></div></section>
+      <section className="visit-section page-section" id="visit"><div className="visit-card"><div className="visit-copy"><p className="eyebrow">Come by soon</p><h2>Make a little<br /><em>room for good.</em></h2><div className="visit-details"><p><strong>Find us</strong><br />Opp. to Industrial Estate, SIDCO<br />Kurusady, North Konam<br />Nagercoil, Tamil Nadu 629004<br /><a className="map-link" href="https://www.google.com/maps/place/ALPS+CAFE/@8.1634338,77.4114533,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f150642d7009:0x1823a6fd6948962!8m2!3d8.1634338!4d77.4114533!16s%2Fg%2F11np_90ckp?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Open in Google Maps ↗</a></p><p><strong>Hours</strong><br />Daily / 11:30 PM - 10:30 PM<br />Kitchen closes at 10.00 PM</p><p><strong>Say hello</strong><br />+91 98765 43210<br />hello@alpscafe.in</p></div><div className="map-panel"><a className="directions-button" href="https://www.google.com/maps/place/ALPS+CAFE/@8.1634338,77.4114533,17z/data=!3m1!4b1!4m6!3m5!1s0x3b04f150642d7009:0x1823a6fd6948962!8m2!3d8.1634338!4d77.4114533!16s%2Fg%2F11np_90ckp?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Show directions <span>↗</span></a><iframe title="Find Alps Cafe on Google Maps" src="https://www.google.com/maps?q=ALPS%20CAFE%2C%20Nagercoil%208.1634338%2C77.4114533&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div></div><form className="booking-form" onSubmit={handleBookingSubmit}><p className="eyebrow">Table request</p><h3>{submitted ? 'We will see you soon.' : 'Save your spot.'}</h3>{submitted ? <p className="form-success">Your email draft is ready. Send it to confirm your table request.</p> : <><label>Name<input required name="name" placeholder="Your name" /></label><div className="form-row"><label>Date<input required name="date" type="date" /></label><label>Guests<select name="guests" defaultValue="2"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5+ guests</option></select></label></div><button className="button button-light" type="submit">Request a table <span>↗</span></button></>}</form></div></section>
 
       <footer className="site-footer"><div className="footer-main"><a className="brand" href="#top" aria-label="Alps Cafe home"><span className="brand-mark"><img src={logoAsset} alt="Alps Cafe logo" /></span></a><p>Good food. Better company.<br />See you upstairs.</p><div className="footer-links"><a href="#menu">Menu</a><a href="#story">About</a><a href="#visit">Contact</a><a href="#visit">Instagram ↗</a></div></div><div className="footer-bottom"><span>© 2026 Alps Cafe</span><span>Made for slow days and long nights.</span></div></footer>
     </main>
